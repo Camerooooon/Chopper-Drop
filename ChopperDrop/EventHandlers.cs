@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Exiled.API.Features;
 using Respawning;
+using Cassie = Exiled.API.Features.Cassie;
 using Map = Exiled.API.Features.Map;
 using Object = UnityEngine.Object;
 
@@ -54,7 +55,8 @@ namespace ChopperDrop
                 
                 RespawnEffectsController.ExecuteAllEffects(RespawnEffectsController.EffectType.Selection, SpawnableTeamType.NineTailedFox);
 
-                Map.Broadcast(5,dropText);
+                //Map.Broadcast(5,dropText);
+                Cassie.Message(dropText);
 
                 yield return Timing.WaitForSeconds(15); // Wait 15 seconds
 
