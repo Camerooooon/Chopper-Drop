@@ -19,16 +19,18 @@ namespace ChopperDrop
 
         public int time;
         public string dropText;
+        public string announcementText;
         public List<CoroutineHandle> coroutines = new List<CoroutineHandle>();
 
         public bool roundStarted = false;
         public Dictionary<ItemType, int> allowedItems;
-        public EventHandlers(Plugin<Config> plugin, Dictionary<ItemType,int> drops, int tim, string dropTex) 
+        public EventHandlers(Plugin<Config> plugin, Dictionary<ItemType,int> drops, int tim, string dropTex, string cassieAnnouncement) 
         { 
             pl = plugin;
             allowedItems = drops;
             time = tim;
             dropText = dropTex;
+            announcementText = cassieAnnouncement;
         }
 
         internal void RoundStart()
@@ -55,8 +57,8 @@ namespace ChopperDrop
                 
                 RespawnEffectsController.ExecuteAllEffects(RespawnEffectsController.EffectType.Selection, SpawnableTeamType.NineTailedFox);
 
-                //Map.Broadcast(5,dropText);
-                Cassie.Message(dropText);
+                Map.Broadcast(5,dropText);
+                Cassie.Message(announcementText);
 
                 yield return Timing.WaitForSeconds(15); // Wait 15 seconds
 
